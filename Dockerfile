@@ -31,39 +31,39 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
         imagemagick-dev \
 
         # PHP packages
-        php7@testing \
-        php7-fpm@testing \
-        php7-opcache@testing \
-        php7-xml@testing \
-        php7-ctype@testing \
-        php7-ftp@testing \
-        php7-gd@testing \
-        php7-json@testing \
-        php7-posix@testing \
-        php7-curl@testing \
-        php7-dom@testing \
-        php7-pdo@testing \
-        php7-pdo_mysql@testing \
-        php7-sockets@testing \
-        php7-zlib@testing \
-        php7-mcrypt@testing \
-        php7-mysqli@testing \
-        php7-sqlite3@testing \
-        php7-bz2@testing \
-        php7-phar@testing \
-        php7-openssl@testing \
-        php7-posix@testing \
-        php7-zip@testing \
-        php7-calendar@testing \
-        php7-iconv@testing \
-        php7-imap@testing \
-        php7-soap@testing \
-        php7-pear@testing \
-        php7-redis@testing \
-        php7-mbstring@testing \
-        php7-xdebug@testing \
-        php7-memcached@testing \
-        php7-exif@testing && \
+#         php7@testing \
+#         php7-fpm@testing \
+#         php7-opcache@testing \
+#         php7-xml@testing \
+#         php7-ctype@testing \
+#         php7-ftp@testing \
+#         php7-gd@testing \
+#         php7-json@testing \
+#         php7-posix@testing \
+#         php7-curl@testing \
+#         php7-dom@testing \
+#         php7-pdo@testing \
+#         php7-pdo_mysql@testing \
+#         php7-sockets@testing \
+#         php7-zlib@testing \
+#         php7-mcrypt@testing \
+#         php7-mysqli@testing \
+#         php7-sqlite3@testing \
+#         php7-bz2@testing \
+#         php7-phar@testing \
+#         php7-openssl@testing \
+#         php7-posix@testing \
+#         php7-zip@testing \
+#         php7-calendar@testing \
+#         php7-iconv@testing \
+#         php7-imap@testing \
+#         php7-soap@testing \
+#         php7-pear@testing \
+#         php7-redis@testing \
+#         php7-mbstring@testing \
+#         php7-xdebug@testing \
+#         php7-memcached@testing \
+#         php7-exif@testing && \
 
     # Create symlinks for backward compatibility
     ln -sf /usr/bin/php7 /usr/bin/php && \
