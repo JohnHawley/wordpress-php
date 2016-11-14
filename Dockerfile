@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:edge
 MAINTAINER Wodby <admin@wodby.com>
 
 # Create user www-data
@@ -31,39 +31,39 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
         imagemagick-dev \
 
         # PHP packages
-#         php7@testing \
-#         php7-fpm@testing \
-#         php7-opcache@testing \
-#         php7-xml@testing \
-#         php7-ctype@testing \
-#         php7-ftp@testing \
-#         php7-gd@testing \
-#         php7-json@testing \
-#         php7-posix@testing \
-#         php7-curl@testing \
-#         php7-dom@testing \
-#         php7-pdo@testing \
-#         php7-pdo_mysql@testing \
-#         php7-sockets@testing \
-#         php7-zlib@testing \
-#         php7-mcrypt@testing \
-#         php7-mysqli@testing \
-#         php7-sqlite3@testing \
-#         php7-bz2@testing \
-#         php7-phar@testing \
-#         php7-openssl@testing \
-#         php7-posix@testing \
-#         php7-zip@testing \
-#         php7-calendar@testing \
-#         php7-iconv@testing \
-#         php7-imap@testing \
-#         php7-soap@testing \
-#         php7-pear@testing \
-#         php7-redis@testing \
-#         php7-mbstring@testing \
-#         php7-xdebug@testing \
-#         php7-memcached@testing \
-#         php7-exif@testing && \
+         php7@testing \
+         php7-fpm@testing \
+         php7-opcache@testing \
+         php7-xml@testing \
+         php7-ctype@testing \
+         php7-ftp@testing \
+         php7-gd@testing \
+         php7-json@testing \
+         php7-posix@testing \
+         php7-curl@testing \
+         php7-dom@testing \
+         php7-pdo@testing \
+         php7-pdo_mysql@testing \
+         php7-sockets@testing \
+         php7-zlib@testing \
+         php7-mcrypt@testing \
+         php7-mysqli@testing \
+         php7-sqlite3@testing \
+         php7-bz2@testing \
+         php7-phar@testing \
+         php7-openssl@testing \
+         php7-posix@testing \
+         php7-zip@testing \
+         php7-calendar@testing \
+         php7-iconv@testing \
+         php7-imap@testing \
+         php7-soap@testing \
+         php7-pear@testing \
+         php7-redis@testing \
+         php7-mbstring@testing \
+         php7-xdebug@testing \
+         php7-memcached@testing \
+         php7-exif@testing && \
 
     # Create symlinks for backward compatibility
     ln -sf /usr/bin/php7 /usr/bin/php && \
@@ -99,6 +99,9 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
     rm -rf /usr/include/php /usr/lib/php/build && \
     rm -rf /var/cache/apk/*
 
+
+
+
 # Configure php.ini
 RUN sed -i \
         -e "s/^expose_php.*/expose_php = Off/" \
@@ -123,7 +126,19 @@ COPY php-fpm.conf /etc/php7/
 
 # Create work dir
 RUN mkdir -p /var/www/html && chown -R 82:82 /var/www
+
 WORKDIR /var/www/html
+
+# Install and configure wordpress
+RUN wp core download --locale=en_US --path=/var/www/html --allow-root && \
+		wp core config \
+			--dbhost=mariadb \
+			--dbname=wordpress \
+			--dbuser=wordpress \
+			--dbpass=wordpress \
+			--skip-check --path=/var/www/html --allow-root
+
+
 VOLUME /var/www/html
 
 EXPOSE 9000
